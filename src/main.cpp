@@ -1,7 +1,9 @@
 #include <iostream>
 #include <string>
 
-#include "days/day1.cpp"
+#include "input.hpp"
+#include "days/day.hpp"
+#include "days/day_01.hpp"
 
 void print_usage()
 {
@@ -29,7 +31,7 @@ int main(int argc, const char *argv[])
 		switch (argv[i][1])
 		{
 		case 't':
-			test = true;
+			test = argv[i][2] != '0';
 			continue;
 		case 'd':
 			day = atoi(&argv[i][2]);
@@ -70,13 +72,41 @@ int main(int argc, const char *argv[])
 		return 1;
 	}
 
-	switch (day)
+	try
 	{
-	case 1:
-		part == 1 ? day1part1() : day1part2();
-		return 0;
-	default:
-		std::cout << "Unimplemented." << std::endl;
+		aoc::input input(test, day);
+
+		std::unique_ptr<aoc::day> day_ptr;
+
+		switch (day)
+		{
+		case 1:
+			day_ptr = std::make_unique<aoc::day_01>(input);
+			break;
+		default:
+			std::cout << "Unimplemented." << std::endl;
+			return 1;
+		}
+
+		switch (part)
+		{
+		case 1:
+			day_ptr->part_one();
+			break;
+		case 2:
+			day_ptr->part_two();
+			break;
+		default:
+			std::cout << "Part " << part << "out of range." << std::endl;
+			print_usage();
+			return 1;
+		}
+	}
+	catch (aoc::file_not_found_exception exception)
+	{
+		std::cout << "File not found: " << exception.path << std::endl;
 		return 1;
 	}
+
+	return 0;
 }
