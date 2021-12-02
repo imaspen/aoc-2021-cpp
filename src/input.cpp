@@ -18,7 +18,7 @@ aoc::input::input(bool test, int day)
 		while (file.good())
 		{
 			std::string line;
-			file >> line;
+			std::getline(file, line);
 			if (line != "")
 			{
 				m_lines.emplace_back(line);
@@ -49,9 +49,7 @@ std::vector<std::tuple<std::string, std::string>> aoc::input::string_string_tupl
 	{
 		const auto &line = m_lines.at(i);
 		const auto split_idx = line.find_first_of(' ');
-		lines.at(i) = std::tuple<std::string, std::string>(
-			line.substr(0, split_idx),
-			line.substr(split_idx + 1, std::string::npos));
+		lines.at(i) = std::make_tuple(line.substr(0, split_idx), line.substr(split_idx + 1, std::string::npos));
 	}
 	return lines;
 }

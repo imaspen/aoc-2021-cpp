@@ -7,7 +7,7 @@ namespace aoc
 	class day_01 : public aoc::day
 	{
 	public:
-		day_01(aoc::input const &input) : day(input){};
+		using day::day;
 
 		virtual void part_one() override;
 		virtual void part_two() override;
