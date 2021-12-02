@@ -53,6 +53,7 @@ std::vector<std::tuple<std::string, std::string>> aoc::input::string_string_tupl
 			line.substr(0, split_idx),
 			line.substr(split_idx + 1, std::string::npos));
 	}
+	return lines;
 }
 
 std::vector<std::tuple<std::string, int>> aoc::input::string_int_tuples()
@@ -66,4 +67,5 @@ std::vector<std::tuple<std::string, int>> aoc::input::string_int_tuples()
 			line.substr(0, split_idx),
 			std::stoi(line.substr(split_idx + 1, std::string::npos)));
 	}
+	return lines;
 }
