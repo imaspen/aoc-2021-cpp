@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <tuple>
 #include <vector>
 
 namespace aoc
@@ -17,9 +18,13 @@ namespace aoc
 	public:
 		input(bool test, int day);
 
-		std::vector<std::string> lines_as_strings() { return m_lines; }
+		std::vector<std::string> strings() { return m_lines; }
 
-		std::vector<int> lines_as_ints();
+		std::vector<int> ints();
+
+		std::vector<std::tuple<std::string, std::string>> string_string_tuples();
+
+		std::vector<std::tuple<std::string, int>> string_int_tuples();
 
 	private:
 		std::vector<std::string> m_lines;

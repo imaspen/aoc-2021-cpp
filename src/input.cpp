@@ -32,12 +32,38 @@ aoc::input::input(bool test, int day)
 	}
 }
 
-std::vector<int> aoc::input::lines_as_ints()
+std::vector<int> aoc::input::ints()
 {
 	std::vector<int> lines(m_lines.size());
-	for (auto i = 0ul; i < lines.size(); ++i)
+	for (size_t i = 0; i < lines.size(); ++i)
 	{
 		lines.at(i) = stoi(m_lines.at(i));
 	}
 	return lines;
+}
+
+std::vector<std::tuple<std::string, std::string>> aoc::input::string_string_tuples()
+{
+	std::vector<std::tuple<std::string, std::string>> lines(m_lines.size());
+	for (size_t i = 0; i < lines.size(); ++i)
+	{
+		const auto &line = m_lines.at(i);
+		const auto split_idx = line.find_first_of(' ');
+		lines.at(i) = std::tuple<std::string, std::string>(
+			line.substr(0, split_idx),
+			line.substr(split_idx + 1, std::string::npos));
+	}
+}
+
+std::vector<std::tuple<std::string, int>> aoc::input::string_int_tuples()
+{
+	std::vector<std::tuple<std::string, int>> lines(m_lines.size());
+	for (size_t i = 0; i < lines.size(); ++i)
+	{
+		const auto &line = m_lines.at(i);
+		const auto split_idx = line.find_first_of(' ');
+		lines.at(i) = std::tuple<std::string, int>(
+			line.substr(0, split_idx),
+			std::stoi(line.substr(split_idx + 1, std::string::npos)));
+	}
 }
