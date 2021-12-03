@@ -67,3 +67,19 @@ std::vector<std::tuple<std::string, int>> aoc::input::string_int_tuples()
 	}
 	return lines;
 }
+
+std::vector<std::vector<bool>> aoc::input::bits() const
+{
+	std::vector<std::vector<bool>> lines(m_lines.size());
+	for (size_t i = 0; i < lines.size(); ++i)
+	{
+		lines.at(i) = std::vector<bool>(m_lines.at(i).size());
+		auto &line = lines.at(i);
+		const auto &str = m_lines.at(i);
+		for (size_t j = 0; j < str.size(); ++j)
+		{
+			line.at(j) = str.at(j) == '1';
+		}
+	}
+	return lines;
+}

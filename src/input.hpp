@@ -26,6 +26,8 @@ namespace aoc
 
 		std::vector<std::tuple<std::string, int>> string_int_tuples();
 
+		std::vector<std::vector<bool>> bits() const;
+
 	private:
 		std::vector<std::string> m_lines;
 	};
