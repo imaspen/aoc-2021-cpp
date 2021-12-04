@@ -9,7 +9,7 @@ namespace aoc
 	class file_not_found_exception : public std::exception
 	{
 	public:
-		file_not_found_exception(const std::string &path) : path(path){};
+		file_not_found_exception(const std::string& path) : path(path) {};
 		const std::string path;
 	};
 
@@ -18,7 +18,7 @@ namespace aoc
 	public:
 		input(bool test, int day);
 
-		std::vector<std::string> strings() { return m_lines; }
+		std::vector<std::string> strings(const bool raw = false);
 
 		std::vector<int> ints();
 
@@ -30,5 +30,6 @@ namespace aoc
 
 	private:
 		std::vector<std::string> m_lines;
+		std::vector<std::string> m_lines_raw;
 	};
 };

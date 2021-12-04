@@ -23,6 +23,7 @@ aoc::input::input(bool test, int day)
 			{
 				m_lines.emplace_back(line);
 			}
+			m_lines_raw.emplace_back(line);
 		}
 		file.close();
 	}
@@ -30,6 +31,11 @@ aoc::input::input(bool test, int day)
 	{
 		throw aoc::file_not_found_exception(path);
 	}
+}
+
+std::vector<std::string> aoc::input::strings(const bool raw)
+{
+	return raw ? m_lines_raw : m_lines;
 }
 
 std::vector<int> aoc::input::ints()
@@ -47,7 +53,7 @@ std::vector<std::tuple<std::string, std::string>> aoc::input::string_string_tupl
 	std::vector<std::tuple<std::string, std::string>> lines(m_lines.size());
 	for (size_t i = 0; i < lines.size(); ++i)
 	{
-		const auto &line = m_lines.at(i);
+		const auto& line = m_lines.at(i);
 		const auto split_idx = line.find_first_of(' ');
 		lines.at(i) = std::make_tuple(line.substr(0, split_idx), line.substr(split_idx + 1, std::string::npos));
 	}
@@ -59,7 +65,7 @@ std::vector<std::tuple<std::string, int>> aoc::input::string_int_tuples()
 	std::vector<std::tuple<std::string, int>> lines(m_lines.size());
 	for (size_t i = 0; i < lines.size(); ++i)
 	{
-		const auto &line = m_lines.at(i);
+		const auto& line = m_lines.at(i);
 		const auto split_idx = line.find_first_of(' ');
 		lines.at(i) = std::tuple<std::string, int>(
 			line.substr(0, split_idx),
@@ -74,8 +80,8 @@ std::vector<std::vector<bool>> aoc::input::bits() const
 	for (size_t i = 0; i < lines.size(); ++i)
 	{
 		lines.at(i) = std::vector<bool>(m_lines.at(i).size());
-		auto &line = lines.at(i);
-		const auto &str = m_lines.at(i);
+		auto& line = lines.at(i);
+		const auto& str = m_lines.at(i);
 		for (size_t j = 0; j < str.size(); ++j)
 		{
 			line.at(j) = str.at(j) == '1';
