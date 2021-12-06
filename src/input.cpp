@@ -33,12 +33,12 @@ aoc::input::input(bool test, int day)
 	}
 }
 
-std::vector<std::string> aoc::input::strings(const bool raw)
+std::vector<std::string> aoc::input::strings(const bool raw) const
 {
 	return raw ? m_lines_raw : m_lines;
 }
 
-std::vector<int> aoc::input::ints()
+std::vector<int> aoc::input::ints() const
 {
 	std::vector<int> lines(m_lines.size());
 	for (size_t i = 0; i < lines.size(); ++i)
@@ -48,7 +48,21 @@ std::vector<int> aoc::input::ints()
 	return lines;
 }
 
-std::vector<std::tuple<std::string, std::string>> aoc::input::string_string_tuples()
+std::vector<int> aoc::input::csv_ints() const
+{
+	std::vector<int> ints;
+	auto line = m_lines.at(0);
+	size_t next_pos = 0;
+	while (next_pos < line.size())
+	{
+		line = line.substr(next_pos);
+		ints.emplace_back(std::stoi(line, &next_pos));
+		++next_pos;
+	}
+	return ints;
+}
+
+std::vector<std::tuple<std::string, std::string>> aoc::input::string_string_tuples() const
 {
 	std::vector<std::tuple<std::string, std::string>> lines(m_lines.size());
 	for (size_t i = 0; i < lines.size(); ++i)
@@ -60,7 +74,7 @@ std::vector<std::tuple<std::string, std::string>> aoc::input::string_string_tupl
 	return lines;
 }
 
-std::vector<std::tuple<std::string, int>> aoc::input::string_int_tuples()
+std::vector<std::tuple<std::string, int>> aoc::input::string_int_tuples() const
 {
 	std::vector<std::tuple<std::string, int>> lines(m_lines.size());
 	for (size_t i = 0; i < lines.size(); ++i)
