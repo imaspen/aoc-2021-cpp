@@ -24,6 +24,8 @@ namespace aoc
 
 		std::vector<int> csv_ints() const;
 
+		std::vector<std::vector<int>> digits() const;
+
 		std::vector<std::tuple<std::string, std::string>> string_string_tuples() const;
 
 		std::vector<std::tuple<std::string, int>> string_int_tuples() const;

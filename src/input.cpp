@@ -62,6 +62,23 @@ std::vector<int> aoc::input::csv_ints() const
 	return ints;
 }
 
+std::vector<std::vector<int>> aoc::input::digits() const
+{
+	std::vector<std::vector<int>> digits;
+	digits.reserve(m_lines.size());
+	for (const auto& line : m_lines)
+	{
+		std::vector<int> ints;
+		ints.reserve(line.size());
+		for (const auto& c : line)
+		{
+			ints.emplace_back(c - '0');
+		}
+		digits.push_back(ints);
+	}
+	return digits;
+}
+
 std::vector<std::tuple<std::string, std::string>> aoc::input::string_string_tuples() const
 {
 	std::vector<std::tuple<std::string, std::string>> lines(m_lines.size());
