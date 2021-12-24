@@ -32,6 +32,8 @@ namespace aoc
 
 		std::vector<std::vector<bool>> bits() const;
 
+		bool test;
+
 	private:
 		std::vector<std::string> m_lines;
 		std::vector<std::string> m_lines_raw;

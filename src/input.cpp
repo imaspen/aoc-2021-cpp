@@ -5,7 +5,7 @@
 #include <string>
 
 constexpr auto format = "inputs/%s%02d.txt";
-aoc::input::input(bool test, int day)
+aoc::input::input(bool test, int day) : test(test)
 {
 	const auto testStr = test ? "test/" : "";
 	const auto size = std::snprintf(nullptr, 0, format, testStr, day);
